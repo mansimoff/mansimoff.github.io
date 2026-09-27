@@ -1,0 +1,100 @@
+# ==============================================================================
+# resume.yaml — единственный источник данных для сайта.
+# HTML НЕ редактируется руками — он рендерится из этого файла через build.py.
+# Заполни/поправь поля ниже под себя. Поля с пометкой # TODO — обязательны к правке.
+# ==============================================================================
+
+name: "Ruslan Mansimov"          
+role: "Unix-Sysadmin/ DevOps / SRE Engineer"
+tagline: "Payment infrastructure · PCI DSS · Automation-first"
+photo: "assets/photo.jpg"
+# Короткий абзац "о себе" — 2-3 предложения, не больше.
+summary: >
+  I’m Ruslan, 22 years old. I work as a Unix sysadmin (with a focus on DevOps/SRE) at a fintech company (payment gateway), where I handle infrastructure, virtualization, automation, network configuration, and monitoring. 
+  At the same time, I am pursuing a master's degree at SPbSUT. I am developing my skills in backend development and ML. I also enjoy traveling, sports, and reading. I hold a Category B driver's license. 
+  I was a medalist at the 2019 World Armwrestling Championship and hold the rank of Candidate for Master of Sports. I am a three-time champion of Tatarstan, as well as a winner and medalist at the St. Petersburg and Volga Federal District armwrestling championships.
+contacts:
+  email: "r.mansimoff@ya.ru"        
+  telegram: "https://t.me/ruslan4ik_707"
+  github: "https://github.com/mansimoff"
+  location: "Санкт-Петербург, Россия"
+
+# Ссылка на второй проект — портфолио. Рендерится отдельной CTA-кнопкой в hero.
+portfolio_url: "https://mansimoff.github.io/portfolio/"
+
+# Путь до PDF-версии резюме (генерируется отдельно через Typst, см. resume.typ)
+resume_pdf: "resume_mansimovr.pdf"
+
+# ------------------------------------------------------------------------------
+# Skills — сгруппированы по смысловым блокам, а не свалены в один список.
+# Порядок блоков = порядок вывода на странице.
+# ------------------------------------------------------------------------------
+skills:
+  - group: "OS & Virtualization"
+    tags: ["RHEL", "Rocky Linux", "CentOS", "QEMU/KVM", "Docker", "Kubernetes"]
+  - group: "Automation & CI/CD"
+    tags: ["Ansible", "GitLab CI/CD", "github Actions", "Terraform", "Python", "Bash"]
+  - group: "Security & Networking"
+    tags: ["nftables/iptables", "strongSwan", "mod_security", "fail2ban/ssh-guard", "openvpn/wireguard", "PCI DSS", "openscap"]
+  - group: "Data & Messaging"
+    tags: ["Oracle 19c", "PostgreSQL 18", "RabbitMQ", "Kafka", "Ceph", "S3", "Vault"]
+  - group: "Application layer"
+    tags: ["WildFly", "Hazelcast", "Java", "Apache", "nginx", "Postfix"]
+  - group: "Observability"
+    tags: ["Zabbix", "Prometheus", "Grafana", "Telegraf", "InfluxDB", "oracledb_exporter", "Mimir", "ELK", "OpenTelemetry"]
+  - group: "Programming"
+    tags: ["Python", "C", "JavaScript", "SQL", "HTML/CSS", "Cmake", "PyTorch/TensorFlow", "NumPy/pandas"]
+
+# ------------------------------------------------------------------------------
+# Experience — список мест работы, новейшее — первым.
+# bullets: 2-4 пункта, начинай с глагола действия, где можно — с цифрой/результатом.
+# ------------------------------------------------------------------------------
+experience:
+  - company: "Paygine"      
+    role: "Unix-Sysadmin / DevOps / SRE Engineer"
+    period: "07.2025 — present time"  
+    bullets:
+      - "Administering Linux servers on Rocky Linux, CentOS (RHEL, KVM, QEMU, libvirt) "
+      - "Automating routine tasks using Ansible and Terraform, Python and Bash"
+      - "Migrating microservices from systemd machines to Kubernetes"
+      - "Creating and deploying automated user management systems on Linux servers"
+      - "Creating and deploying automated security audits for Linux servers and automatic remediation"
+      - "Deploying and maintaining HashiCorp Vault for secret management"
+      - "Configuring network security: nftables, strongSwan, ipseq, waf mod_security"
+      - "Deploying auxiliary services and tools"
+      - "Configuring backup, monitoring, and alerting"
+      - "Configuring virtual machines, web servers, databases, and email servers"
+      - "Troubleshooting and incident analysis"
+
+# ------------------------------------------------------------------------------
+# Projects — ссылки на свои репозитории. 
+#
+projects:
+  - name: "User Management Automation Linux Server"     
+    url: "https://github.com/mansimoff/linux_management_users"
+    description: "Automating user management on Linux servers (Stack: Ansible, GitLab CI, Python, Postfix; Functions: Create users, block users, update password)"
+  - name: "PCI DSS compliance audit and remediation"
+    url: "https://github.com/mansimoff/openscap"
+    description: "Automated audit of Linux servers for PCI DSS compliance and subsequent remediation (openscap)"
+  - name: "Web Investment Calculator"
+    url: "https://mansimoff.github.io/web_investment_calculator/"
+    description: "The investor calculator is a web application written in JavaScript (Functions: final amount, time to achieve the goal, required percentage, deposit size, initial capital, income chart)"
+
+
+# ------------------------------------------------------------------------------
+# Education
+# ------------------------------------------------------------------------------
+education:
+  - org: "SPbSUT im. prof. M. A. Bonch-Bruevich"
+    url: "https://sut.ru/"
+    degree: "Master's Program, 11.04.02 «Infocommunication Technologies and Communication Systems»"
+    detail: "Profile: Machine and Deep Learning for the Tactile Internet and Metaverses"
+    period: "2026 — н.в."
+  - org: "SPbSUT im. prof. M. A. Bonch-Bruevich"
+    url: "https://sut.ru/"
+    degree: "Bachelor's Program, 09.03.01 «Information Technology and Computing»"
+    detail: "Distributed Systems Management in Fifth and Subsequent Generations of Communication Networks"
+    period: "2022 - 2026"
+
+# Ссылки в футере
+footer_note: "The site is built from YAML → HTML using a Python builder. Source code — in this repository."

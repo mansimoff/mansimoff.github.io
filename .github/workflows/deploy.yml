@@ -29,31 +29,25 @@ jobs:
       - name: Install Python deps
         run: pip install -r requirements.txt
 
-      - name: Generate og-image.png from resume.yaml
-        # Перегенерирует static/assets/og-image.png при каждой сборке, чтобы
-        # превью-картинка при шаринге ссылки не расходилась с текущим резюме
+      - name: Generate og-image.png from resume.ru.yaml
+        # Одна общая og-картинка на обе языковые версии (см. generate_og_image.py)
         run: python generate_og_image.py
 
-      - name: Build HTML from resume.yaml
+      - name: Build HTML (RU → /, EN → /en/)
         run: python build.py
 
       - name: Install Typst
         uses: typst-community/setup-typst@v3
 
-      - name: Read PDF filename from resume.yaml
-        # Имя файла — тоже часть data/resume.yaml (поле resume_pdf), а не
-        # захардкожено здесь. Меняешь имя один раз в yaml — CI и HTML-ссылка
-        # <a href="{{ resume_pdf }}"> в шаблоне автоматически останутся синхронны.
-        id: pdfname
+      - name: Compile PDFs (RU + EN)
+        # Один и тот же resume.typ, разные данные по --input lang=.
+        # Имя выходного файла берём из resume_pdf в соответствующем resume.<lang>.yaml —
+        # переименуешь PDF там, CI и ссылка в HTML останутся синхронны сами по себе.
         run: |
-          NAME=$(python -c "import yaml; print(yaml.safe_load(open('data/resume.yaml'))['resume_pdf'])")
-          echo "name=$NAME" >> "$GITHUB_OUTPUT"
-
-      - name: Compile PDF
-        # --font-path указывает на шрифты, закоммиченные в static/assets/fonts/ —
-        # без него Typst найдёт только системные DejaVu/Liberation/Noto и молча
-        # подставит их вместо Source Serif 4 / JetBrains Mono
-        run: typst compile resume.typ "public/${{ steps.pdfname.outputs.name }}" --font-path static/assets/fonts
+          for LANG in ru en; do
+            NAME=$(python -c "import yaml; print(yaml.safe_load(open('data/resume.$LANG.yaml'))['resume_pdf'])")
+            typst compile resume.typ "public/$NAME" --font-path static/assets/fonts --input lang=$LANG
+          done
 
       - uses: actions/upload-pages-artifact@v3
         with:

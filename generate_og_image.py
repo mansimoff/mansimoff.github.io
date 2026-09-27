@@ -22,7 +22,7 @@ import yaml
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).parent
-DATA_FILE = ROOT / "data" / "resume.yaml"
+DATA_FILE = ROOT / "data" / "resume.ru.yaml"  # общая OG-картинка на RU и EN версии
 FONTS_DIR = ROOT / "static" / "assets" / "fonts"
 OUTPUT = ROOT / "static" / "assets" / "og-image.png"
 

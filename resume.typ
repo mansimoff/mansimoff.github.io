@@ -6,6 +6,17 @@
 // Компиляция (см. .github/workflows/deploy.yml):
 //   typst compile resume.typ public/resume_mansimovrr.pdf --font-path static/assets/fonts
 
+// Язык передаётся флагом компиляции: typst compile resume.typ out.pdf --input lang=en
+// По умолчанию (если флаг не передан) — русский.
+#let lang = sys.inputs.at("lang", default: "ru")
+#let data = yaml("data/resume." + lang + ".yaml")
+
+// Заголовки разделов — та же логика "UI-строки отдельно от данных", что в build.py
+#let ui = (
+  ru: (about: "Обо мне", skills: "Стек", experience: "Опыт", projects: "Проекты", education: "Образование", contacts: "Контакты"),
+  en: (about: "About", skills: "Stack", experience: "Experience", projects: "Projects", education: "Education", contacts: "Contacts"),
+)
+#let t = ui.at(lang)
 
 // Светлая тема — те же значения, что в static/style.css под
 // @media (prefers-color-scheme: light), чтобы PDF не расходился с сайтом

@@ -32,6 +32,19 @@
   v(0.3cm)
 }
 
+// ---- PHOTO (опционально) -----------------------------------------------
+// #place кладёт элемент абсолютно поверх текущего потока — не сдвигает
+// остальной контент, в отличие от обычной вставки image()
+#if "photo_pdf" in data.keys() and data.photo_pdf != "" [
+  #place(top + right, dx: 0pt, dy: 0pt)[
+    #box(
+      width: 2.2cm, height: 2.2cm,
+      clip: true,
+      stroke: 0.5pt + border,
+    )[#image(data.photo_pdf, width: 2.2cm, height: 2.2cm, fit: "cover")]
+  ]
+]
+
 // ---- HERO -------------------------------------------------------------
 #text(size: 26pt, weight: "semibold", fill: fg)[#data.name]
 #v(0.15cm)
@@ -43,18 +56,18 @@
 #line(length: 100%, stroke: 0.5pt + border)
 
 // ---- ABOUT --------------------------------------------------------------
-#section[Обо мне]
+#section[#t.about]
 #data.summary
 
 // ---- SKILLS ---------------------------------------------------------------
-#section[Стек]
+#section[#t.skills]
 #for block in data.skills [
   #mono[#block.group]  #block.tags.join(" · ")  \
   #v(0.15cm)
 ]
 
 // ---- EXPERIENCE -----------------------------------------------------------
-#section[Опыт]
+#section[#t.experience]
 #for job in data.experience [
   *#job.role* --- #job.company #h(1fr) #mono[#job.period]
   #for b in job.bullets [
@@ -65,7 +78,7 @@
 
 // ---- PROJECTS ---------------------------------------------------------------
 #if "projects" in data.keys() [
-  #section[Проекты]
+  #section[#t.projects]
   #for p in data.projects [
     *#link(p.url)[#p.name]*
     #text(fill: muted, size: 9pt)[#p.description]
@@ -74,7 +87,7 @@
 ]
 
 // ---- EDUCATION --------------------------------------------------------------
-#section[Образование]
+#section[#t.education]
 #for ed in data.education [
   #if "url" in ed.keys() [
     *#link(ed.url)[#ed.org]*
@@ -91,6 +104,6 @@
 ]
 
 // ---- CONTACTS ---------------------------------------------------------------
-#section[Контакты]
+#section[#t.contacts]
 #mono[email] #data.contacts.email #h(1fr) #mono[location] #data.contacts.location \
 #if data.contacts.github != "" [#mono[github] #data.contacts.github]

@@ -7,7 +7,7 @@
 name: "Руслан Мансимов"          
 role: "Unix-Sysadmin/ DevOps / SRE Engineer"
 tagline: "Payment infrastructure · PCI DSS · Automation-first"
-
+photo: "assets/photo.jpg"
 # Короткий абзац "о себе" — 2-3 предложения, не больше.
 summary: >
   Я Руслан, мне 22 года. Я работаю Unix-sysadmin (с уклоном в DevOps/SRE) в fintech-компании (платёжный шлюз): отвечаю за инфраструктуру, виртуализацию, автоматизацию, настройку сети и мониторинг.

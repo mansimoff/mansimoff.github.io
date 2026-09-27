@@ -24,7 +24,7 @@ contacts:
 portfolio_url: "https://mansimoff.github.io/portfolio/"
 
 # Путь до PDF-версии резюме (генерируется отдельно через Typst, см. resume.typ)
-resume_pdf: "resume_mansimovr.pdf"
+resume_pdf: "resume_ru_mansimovr.pdf"
 
 # ------------------------------------------------------------------------------
 # Skills — сгруппированы по смысловым блокам, а не свалены в один список.

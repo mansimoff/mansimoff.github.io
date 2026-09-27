@@ -25,7 +25,7 @@ TEMPLATES_DIR = ROOT / "templates"
 STATIC_DIR = ROOT / "static"
 OUTPUT_DIR = ROOT / "public"
 
-SITE_URL = "https://mansimoff.github.io"   # 
+SITE_URL = "https://mansimoff.github.io"   # TODO: подставь свой домен
 
 # Текст интерфейса шаблона (заголовки разделов, кнопки) — не личные данные,
 # поэтому живёт здесь одним словарём, а не дублируется в каждом resume.*.yaml.
@@ -104,9 +104,24 @@ def main() -> None:
         autoescape=select_autoescape(["html"]),
     )
 
+    all_data = {lang: load_data(cfg["data_file"]) for lang, cfg in LOCALES.items()}
+
+    # Защита от бага "всегда скачивается не тот язык": если resume_pdf совпадает
+    # в нескольких resume.<lang>.yaml, при компиляции PDF в CI один язык молча
+    # перезапишет файл другого (см. .github/workflows/deploy.yml, шаг Compile PDFs).
+    # Лучше упасть здесь явно, чем ловить на проде "всегда скачивается английский".
+    seen: dict[str, str] = {}
+    for lang, data in all_data.items():
+        name = data["resume_pdf"]
+        if name in seen:
+            sys.exit(
+                f"resume_pdf совпадает у {seen[name]} и {lang}: '{name}'. "
+                f"Дай каждому языку своё имя PDF в data/resume.{{lang}}.yaml."
+            )
+        seen[name] = lang
+
     for lang, cfg in LOCALES.items():
-        data = load_data(cfg["data_file"])
-        html = render_html(env, lang, cfg, data)
+        html = render_html(env, lang, cfg, all_data[lang])
         cfg["out_path"].parent.mkdir(parents=True, exist_ok=True)
         cfg["out_path"].write_text(html, encoding="utf-8")
         print(f"OK [{lang}]: {cfg['out_path']}")

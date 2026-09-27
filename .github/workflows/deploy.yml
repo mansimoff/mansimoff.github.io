@@ -29,14 +29,31 @@ jobs:
       - name: Install Python deps
         run: pip install -r requirements.txt
 
+      - name: Generate og-image.png from resume.yaml
+        # Перегенерирует static/assets/og-image.png при каждой сборке, чтобы
+        # превью-картинка при шаринге ссылки не расходилась с текущим резюме
+        run: python generate_og_image.py
+
       - name: Build HTML from resume.yaml
         run: python build.py
 
       - name: Install Typst
         uses: typst-community/setup-typst@v3
 
+      - name: Read PDF filename from resume.yaml
+        # Имя файла — тоже часть data/resume.yaml (поле resume_pdf), а не
+        # захардкожено здесь. Меняешь имя один раз в yaml — CI и HTML-ссылка
+        # <a href="{{ resume_pdf }}"> в шаблоне автоматически останутся синхронны.
+        id: pdfname
+        run: |
+          NAME=$(python -c "import yaml; print(yaml.safe_load(open('data/resume.yaml'))['resume_pdf'])")
+          echo "name=$NAME" >> "$GITHUB_OUTPUT"
+
       - name: Compile PDF
-        run: typst compile resume.typ public/resume.pdf
+        # --font-path указывает на шрифты, закоммиченные в static/assets/fonts/ —
+        # без него Typst найдёт только системные DejaVu/Liberation/Noto и молча
+        # подставит их вместо Source Serif 4 / JetBrains Mono
+        run: typst compile resume.typ "public/${{ steps.pdfname.outputs.name }}" --font-path static/assets/fonts
 
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -1,47 +1,76 @@
-// resume.typ — компилируется в PDF: typst compile resume.typ static/resume.pdf
-// Контент сейчас продублирован вручную из data/resume.yaml.
-// Если резюме будет часто меняться — вынеси текст в resume.yaml и генерируй
-// этот файл через build.py тем же способом, что и index.html (см. README, шаг «Автоматизация PDF»).
+// resume.typ — PDF-версия резюме.
+// Контент НЕ дублируется руками: yaml() читает data/resume.yaml прямо во время
+// компиляции. Меняешь только resume.yaml — PDF и HTML всегда синхронны.
+// Тут только вёрстка/дизайн (цвета/шрифты/раскладка) — тот же язык, что в style.css.
+//
+// Компиляция (см. .github/workflows/deploy.yml):
+//   typst compile resume.typ public/resume.pdf --font-path static/assets/fonts
+
+#let data = yaml("data/resume.yaml")
 
 #set page(margin: 2cm, fill: rgb("#0f1013"))
 #set text(font: "Source Serif 4", size: 10.5pt, fill: rgb("#e7e4dd"))
 
 #let accent = rgb("#c9972f")
 #let muted = rgb("#8b8a86")
+#let border = rgb("#2a2a2b")
 
+// mono() — обёртка для мета-данных (даты/лейблы), как .hero__role/.tag в CSS
 #let mono(body) = text(font: "JetBrains Mono", size: 8.5pt, fill: muted, body)
 
-= #text(fill: white)[Руслан ...]
-#mono[DevOps / SRE Engineer]
+// section() — заголовок раздела с левой акцентной чертой, как .section__title
+#let section(title) = {
+  v(0.4cm)
+  box(inset: (left: 0.3cm), stroke: (left: 2pt + accent))[
+    #text(size: 13pt, weight: "semibold", fill: white)[#title]
+  ]
+  v(0.3cm)
+}
+
+// ---- HERO -------------------------------------------------------------
+#text(size: 26pt, weight: "semibold", fill: white)[#data.name]
+#v(0.15cm)
+#mono[#data.role]
+#v(0.1cm)
+#text(fill: muted, size: 9.5pt)[#data.tagline]
 
 #v(0.3cm)
-#line(length: 100%, stroke: 0.5pt + rgb("#2a2a2b"))
-#v(0.3cm)
+#line(length: 100%, stroke: 0.5pt + border)
 
-DevOps/SRE и сетевой инженер в fintech-компании, эксплуатирующей платёжный шлюз
-в контуре PCI DSS. Отвечаю за инфраструктуру ~14 dev-серверов: виртуализацию,
-CI/CD, сетевую безопасность и мониторинг.
+// ---- ABOUT --------------------------------------------------------------
+#section[Обо мне]
+#data.summary
 
-== #text(fill: accent)[Стек]
+// ---- SKILLS ---------------------------------------------------------------
+#section[Стек]
+#for block in data.skills [
+  #mono[#block.group]  #block.tags.join(" · ")  \
+  #v(0.15cm)
+]
 
-#mono[OS & Virtualization] — Rocky Linux, QEMU/KVM, Docker, Kubernetes \
-#mono[Automation & CI/CD] — Ansible, GitLab CI/CD, Terraform, Python \
-#mono[Security & Networking] — nftables, strongSwan, HashiCorp Vault, mod_security, PCI DSS \
-#mono[Data & Messaging] — Oracle 19c, PostgreSQL 18, RabbitMQ, Kafka, Ceph \
-#mono[Observability] — Zabbix, Prometheus, Grafana, Telegraf, InfluxDB v2
+// ---- EXPERIENCE -----------------------------------------------------------
+#section[Опыт]
+#for job in data.experience [
+  *#job.role* --- #job.company #h(1fr) #mono[#job.period]
+  #for b in job.bullets [
+    - #b
+  ]
+  #v(0.25cm)
+]
 
-== #text(fill: accent)[Опыт]
+// ---- EDUCATION --------------------------------------------------------------
+#section[Образование]
+#for ed in data.education [
+  *#ed.org* #h(1fr) #mono[#ed.period]
 
-*DevOps / SRE Engineer* — Название компании #h(1fr) #mono[20XX — н.в.]
-- Администрирование ~14 dev-серверов на Rocky Linux в контуре PCI DSS
-- Построение и поддержка CI/CD пайплайнов на GitLab CI
-- Внедрение HashiCorp Vault для управления секретами
+  #ed.degree
+  #if ed.detail != "" [
+    #text(fill: muted, size: 9pt)[#ed.detail]
+  ]
+  #v(0.25cm)
+]
 
-== #text(fill: accent)[Образование]
-
-*СПбГУТ им. проф. М. А. Бонч-Бруевича* #h(1fr) #mono[2026 — н.в.]
-Магистратура, 11.04.02 ИКТиСС, профиль: ML/DL для тактильного интернета и метавселенных
-
-== #text(fill: accent)[Контакты]
-
-#mono[email] your@email.com  #h(1fr)  #mono[github] github.com/your-username
+// ---- CONTACTS ---------------------------------------------------------------
+#section[Контакты]
+#mono[email] #data.contacts.email #h(1fr) #mono[location] #data.contacts.location \
+#if data.contacts.github != "" [#mono[github] #data.contacts.github]

@@ -62,11 +62,34 @@ button:focus-visible {
 .muted { color: var(--muted); }
 
 /* ==========================================================================
+   LANG SWITCH
+   ========================================================================== */
+.lang-switch {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 1.25rem 1.5rem 0;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+.lang-switch a {
+  color: var(--muted);
+  margin-left: 0.6rem;
+  text-decoration: none;
+}
+.lang-switch a:hover { color: var(--fg); }
+.lang-switch a.is-active {
+  color: var(--accent);
+  pointer-events: none; /* текущий язык не кликабелен */
+}
+
+/* ==========================================================================
    HERO
    Асимметричная композиция: имя крупным serif слева, действия — справа.
    Никакого градиента/эмодзи/иконок — вес держит только типографика.
    ========================================================================== */
 .hero {
+  position: relative; /* точка отсчёта для .hero__photo */
   max-width: var(--content-width);
   margin: 0 auto;
   padding: 4.5rem 1.5rem 3rem;
@@ -76,6 +99,27 @@ button:focus-visible {
   align-items: flex-end;
   gap: 1.5rem;
   border-bottom: 1px solid var(--border);
+}
+
+.hero__photo {
+  position: absolute;
+  top: 2rem;
+  right: 1.5rem;
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  /* grayscale — чтобы цветное фото не спорило со сдержанной палитрой сайта;
+     убери filter, если хочешь фото в цвете */
+  filter: grayscale(1) contrast(1.05);
+}
+
+@media (max-width: 600px) {
+  /* на узком экране абсолютное фото наедет на текст — переводим в поток */
+  .hero__photo {
+    position: static;
+    order: -1;
+  }
 }
 
 .hero h1 {

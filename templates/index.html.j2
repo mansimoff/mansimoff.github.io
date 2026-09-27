@@ -29,6 +29,9 @@
 
   <!-- ============================== HERO ============================== -->
   <header class="hero">
+    {% if photo %}
+    <img class="hero__photo" src="/{{ photo }}" alt="{{ name }}" width="120" height="120">
+    {% endif %}
     <div class="hero__text">
       <h1>{{ name }}</h1>
       <p class="hero__role">{{ role }}</p>

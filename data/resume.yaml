@@ -10,9 +10,9 @@ tagline: "Payment infrastructure · PCI DSS · Automation-first"
 
 # Короткий абзац "о себе" — 2-3 предложения, не больше.
 summary: >
-  Я работаю Unix-sysadmin, DevOps/SRE в fintech-компании (платёжный шлюз). Отвечаю за инфраструктуру,
-  виртуализацию, автоматизацию рутинных задач, сетевую безопасность и мониторинг.
-  Параллельно учусь в магистратуре СПбГУТ. Развиваюсь в сторону backend-разработки и ML-инфраструктуры.
+  Я работаю Unix-sysadmin (с уклоном в DevOps/SRE) в fintech-компании (платёжный шлюз).
+  Отвечаю за инфраструктуру, виртуализацию, автоматизацию, сетевую безопасность и мониторинг.
+  Параллельно учусь в магистратуре СПбГУТ. Развиваюсь в сторону backend-разработки и ML.
 
 contacts:
   email: "r.mansimoff@ya.ru"        
@@ -24,7 +24,7 @@ contacts:
 portfolio_url: "https://mansimoff.github.io/portfolio/"
 
 # Путь до PDF-версии резюме (генерируется отдельно через Typst, см. resume.typ)
-resume_pdf: "resume.pdf"
+resume_pdf: "resume_mansimovr.pdf"
 
 # ------------------------------------------------------------------------------
 # Skills — сгруппированы по смысловым блокам, а не свалены в один список.
@@ -36,13 +36,15 @@ skills:
   - group: "Automation & CI/CD"
     tags: ["Ansible", "GitLab CI/CD", "github Actions", "Terraform", "Python", "Bash"]
   - group: "Security & Networking"
-    tags: ["nftables/iptables", "strongSwan", "HashiCorp Vault", "mod_security", "fail2ban/ssh-guard", "openvpn/wireguard", "PCI DSS", "openscap"]
+    tags: ["nftables/iptables", "strongSwan", "mod_security", "fail2ban/ssh-guard", "openvpn/wireguard", "PCI DSS", "openscap"]
   - group: "Data & Messaging"
-    tags: ["Oracle 19c", "PostgreSQL 18", "RabbitMQ", "Kafka", "Ceph", "S3"]
+    tags: ["Oracle 19c", "PostgreSQL 18", "RabbitMQ", "Kafka", "Ceph", "S3", "Vault"]
   - group: "Application layer"
-    tags: ["WildFly", "Hazelcast", "Java", "Apache", "nginx"]
+    tags: ["WildFly", "Hazelcast", "Java", "Apache", "nginx", "Postfix"]
   - group: "Observability"
-    tags: ["Zabbix", "Prometheus", "Grafana", "Telegraf", "InfluxDB", "oracledb_exporter"]
+    tags: ["Zabbix", "Prometheus", "Grafana", "Telegraf", "InfluxDB", "oracledb_exporter", "Mimir", "ELK", "OpenTelemetry"]
+  - group: "Programming"
+    tags: ["Python", "C", "JavaScript", "SQL", "HTML/CSS", "Cmake", "PyTorch/TensorFlow", "NumPy/pandas"]
 
 # ------------------------------------------------------------------------------
 # Experience — список мест работы, новейшее — первым.
@@ -64,6 +66,17 @@ experience:
       - "Настройка бэкапирования, мониторинга и алертинга"
       - "Настройка виртуальных машин, веб-серверов, баз данных, почтовых серверов"
       - "Траблшутниг и разбор инцидентов"
+
+# ------------------------------------------------------------------------------
+# Projects — ссылки на свои репозитории. 
+#
+projects:
+  - name: "User Management Automation Linux Server"     
+    url: "https://github.com/mansimoff/linux_management_users"
+    description: "Автоматизация управления пользователями на линукс-серверах (Стек: Ansible, GitLab CI, Python, Postfix; Функции: Create users, block users, update password)"
+  - name: "PCI DSS compliance audit and remediation"
+    url: "https://github.com/mansimoff/openscap"
+    description: "Автоматизированный аудит линукс сервера на соответствие ПЦИ ДСС и дальнейшая ремидиация (openscap)"
 
 
 # ------------------------------------------------------------------------------

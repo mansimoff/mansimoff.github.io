@@ -178,6 +178,31 @@ button:focus-visible {
 }
 
 /* ==========================================================================
+   PROJECTS
+   Просто список без дат/мета-колонки — заголовок-ссылка + описание.
+   ========================================================================== */
+.projects {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.project {
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.project:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.project h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+}
+.project p { margin: 0; }
+
+/* ==========================================================================
    TIMELINE (Experience / Education)
    Двухколоночная раскладка: дата в mono слева (как лог), контент справа.
    Это реальная хронология — нумерация/дата здесь оправдана содержанием.

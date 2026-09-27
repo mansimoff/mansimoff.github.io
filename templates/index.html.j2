@@ -11,7 +11,7 @@
   <meta property="og:title" content="{{ name }} — {{ role }}">
   <meta property="og:description" content="{{ tagline }}">
   <meta property="og:image" content="assets/og-image.png">
-  <link rel="canonical" href="https://mansimoff.github.io/">
+  <link rel="canonical" href="https://your-username.github.io/">
 
   <!-- Favicon: простой SVG-монограмма, без внешних иконок -->
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -88,6 +88,21 @@
     </div>
   </section>
 
+  <!-- ============================== PROJECTS ============================== -->
+  {% if projects %}
+  <section class="section">
+    <h2 class="section__title">Проекты</h2>
+    <ul class="projects">
+      {% for p in projects %}
+      <li class="project">
+        <h3><a href="{{ p.url }}" target="_blank" rel="noopener">{{ p.name }}</a></h3>
+        <p class="muted">{{ p.description }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
   <!-- ============================== EDUCATION ============================== -->
   <section class="section">
     <h2 class="section__title">Образование</h2>
@@ -98,7 +113,7 @@
           <span class="timeline__period">{{ ed.period }}</span>
         </div>
         <div class="timeline__body">
-          <h3>{{ ed.org }}</h3>
+          <h3>{% if ed.url %}<a href="{{ ed.url }}" target="_blank" rel="noopener">{{ ed.org }}</a>{% else %}{{ ed.org }}{% endif %}</h3>
           <p>{{ ed.degree }}</p>
           {% if ed.detail %}<p class="muted">{{ ed.detail }}</p>{% endif %}
         </div>

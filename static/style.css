@@ -1,0 +1,249 @@
+/* ==========================================================================
+   ДИЗАЙН-ТОКЕНЫ
+   Палитра: тёплый почти-чёрный (не чистый #000/#0B0B0B) + один акцент —
+   приглушённый янтарь, отсылка к фосфору старых терминалов/CRT.
+   Это осознанная привязка к "технической натуре" из брифа, а не дефолт.
+   ========================================================================== */
+:root {
+  --bg:        #0f1013;   /* тёплый почти-чёрный, не стерильный */
+  --fg:        #e7e4dd;   /* тёплый почти-белый — не режет глаз */
+  --muted:     #8b8a86;
+  --accent:    #c9972f;   /* приглушённый янтарь, не "acid" неон */
+  --border:    #2a2a2b;
+  --radius:    0;         /* острые углы — строгость, не SaaS-скругления */
+
+  --font-serif: "Source Serif 4", Georgia, serif;   /* вес и серьёзность */
+  --font-mono:  "JetBrains Mono", ui-monospace, monospace; /* только мета: даты/теги */
+
+  --content-width: 46rem;  /* < 80 символов в строке */
+  --gap: 2.5rem;
+}
+
+/* Светлая тема — переключается автоматически по системным настройкам,
+   без JS-тумблера */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f6f5f2;
+    --fg: #17181b;
+    --muted: #6b6a66;
+    --border: #dedcd6;
+    --accent: #9c6f00;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-padding-top: 2rem; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-serif);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+a:hover { text-decoration-thickness: 2px; }
+
+/* Видимый фокус для доступности — не убирать outline без замены */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.muted { color: var(--muted); }
+
+/* ==========================================================================
+   HERO
+   Асимметричная композиция: имя крупным serif слева, действия — справа.
+   Никакого градиента/эмодзи/иконок — вес держит только типографика.
+   ========================================================================== */
+.hero {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 4.5rem 1.5rem 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+.hero__role {
+  margin: 0.5rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--accent);
+}
+
+.hero__tagline {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  max-width: 32ch;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  border: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--fg);
+  transition: border-color 0.15s ease;
+}
+.btn:hover { border-color: var(--accent); text-decoration: none; }
+.btn--primary { border-color: var(--accent); color: var(--accent); }
+
+/* ==========================================================================
+   SECTIONS
+   Заголовок раздела — не капслок-eyebrow, а обычный serif-заголовок
+   с тонкой левой границей акцентного цвета: структура несёт смысл.
+   ========================================================================== */
+.section {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.section:last-of-type { border-bottom: none; }
+
+.section__title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0 0 1.5rem;
+  padding-left: 0.9rem;
+  border-left: 3px solid var(--accent);
+}
+
+.summary { max-width: 60ch; }
+
+/* ==========================================================================
+   SKILLS
+   Плоские теги без скруглений/теней — просто hairline-рамка. Сгруппированы
+   по смыслу (см. resume.yaml), а не одним общим облаком.
+   ========================================================================== */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.75rem;
+}
+
+.skills-group__title {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--muted);
+  margin: 0 0 0.75rem;
+}
+
+.tag-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--border);
+  color: var(--fg);
+}
+
+/* ==========================================================================
+   TIMELINE (Experience / Education)
+   Двухколоночная раскладка: дата в mono слева (как лог), контент справа.
+   Это реальная хронология — нумерация/дата здесь оправдана содержанием.
+   ========================================================================== */
+.timeline__item {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.timeline__item:last-child { margin-bottom: 0; }
+
+.timeline__period {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.timeline__body h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+.timeline__company { font-weight: 400; color: var(--muted); }
+
+.timeline__body ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+.timeline__body li { margin-bottom: 0.35rem; }
+
+@media (max-width: 540px) {
+  .timeline__item { grid-template-columns: 1fr; gap: 0.4rem; }
+}
+
+/* ==========================================================================
+   CONTACTS
+   ========================================================================== */
+.contacts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+.contacts span.muted {
+  display: inline-block;
+  width: 6rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.footer {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* Уважаем reduced-motion — на сайте и так почти нет анимаций,
+   но если добавишь переходы позже, они должны отключаться здесь */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

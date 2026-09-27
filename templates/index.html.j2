@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ name }} — {{ role }}</title>
+  <meta name="description" content="{{ tagline }}">
+
+  <!-- Open Graph — превью при шаринге в Telegram/LinkedIn/HH -->
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="{{ name }} — {{ role }}">
+  <meta property="og:description" content="{{ tagline }}">
+  <meta property="og:image" content="assets/og-image.png">
+  <link rel="canonical" href="https://mansimoff.github.io/">
+
+  <!-- Favicon: простой SVG-монограмма, без внешних иконок -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <!-- Шрифты: моно — для тегов/дат (техническая эстетика), sans — для текста -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <!-- print.css подключается только для печати, в основной поток не влияет -->
+  <link rel="stylesheet" href="print.css" media="print">
+</head>
+<body>
+
+  <!-- ============================== HERO ============================== -->
+  <header class="hero">
+    <div class="hero__text">
+      <h1>{{ name }}</h1>
+      <p class="hero__role">{{ role }}</p>
+      <p class="hero__tagline">{{ tagline }}</p>
+    </div>
+
+    <div class="hero__actions no-print">
+      <a class="btn btn--primary" href="{{ resume_pdf }}" download>Скачать PDF</a>
+      {% if portfolio_url %}
+      <a class="btn btn--ghost" href="{{ portfolio_url }}" target="_blank" rel="noopener">Портфолио</a>
+      {% endif %}
+    </div>
+  </header>
+
+  <!-- ============================== ABOUT ============================== -->
+  <section class="section">
+    <h2 class="section__title">Обо мне</h2>
+    <p class="summary">{{ summary }}</p>
+  </section>
+
+  <!-- ============================== SKILLS ============================== -->
+  <section class="section">
+    <h2 class="section__title">Стек</h2>
+    <div class="skills-grid">
+      {% for block in skills %}
+      <div class="skills-group">
+        <h3 class="skills-group__title">{{ block.group }}</h3>
+        <ul class="tag-list">
+          {% for item in block.tags %}
+          <li class="tag">{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- ============================== EXPERIENCE ============================== -->
+  <section class="section">
+    <h2 class="section__title">Опыт</h2>
+    <div class="timeline">
+      {% for job in experience %}
+      <article class="timeline__item">
+        <div class="timeline__meta">
+          <span class="timeline__period">{{ job.period }}</span>
+        </div>
+        <div class="timeline__body">
+          <h3>{{ job.role }} <span class="timeline__company">— {{ job.company }}</span></h3>
+          <ul>
+            {% for b in job.bullets %}
+            <li>{{ b }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- ============================== EDUCATION ============================== -->
+  <section class="section">
+    <h2 class="section__title">Образование</h2>
+    <div class="timeline">
+      {% for ed in education %}
+      <article class="timeline__item">
+        <div class="timeline__meta">
+          <span class="timeline__period">{{ ed.period }}</span>
+        </div>
+        <div class="timeline__body">
+          <h3>{{ ed.org }}</h3>
+          <p>{{ ed.degree }}</p>
+          {% if ed.detail %}<p class="muted">{{ ed.detail }}</p>{% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- ============================== CONTACTS ============================== -->
+  <section class="section">
+    <h2 class="section__title">Контакты</h2>
+    <ul class="contacts">
+      <li><span class="muted">location</span> {{ contacts.location }}</li>
+      <li><span class="muted">email</span> <a href="mailto:{{ contacts.email }}">{{ contacts.email }}</a></li>
+      {% if contacts.telegram %}<li><span class="muted">telegram</span> <a href="{{ contacts.telegram }}" target="_blank" rel="noopener">{{ contacts.telegram }}</a></li>{% endif %}
+      {% if contacts.github %}<li><span class="muted">github</span> <a href="{{ contacts.github }}" target="_blank" rel="noopener">{{ contacts.github }}</a></li>{% endif %}
+      {% if contacts.linkedin %}<li><span class="muted">linkedin</span> <a href="{{ contacts.linkedin }}" target="_blank" rel="noopener">{{ contacts.linkedin }}</a></li>{% endif %}
+    </ul>
+  </section>
+
+  <footer class="footer no-print">
+    <p>{{ footer_note }}</p>
+  </footer>
+
+</body>
+</html>

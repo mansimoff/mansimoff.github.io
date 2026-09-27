@@ -6,7 +6,6 @@
 // Компиляция (см. .github/workflows/deploy.yml):
 //   typst compile resume.typ public/resume_mansimovrr.pdf --font-path static/assets/fonts
 
-#let data = yaml("data/resume.yaml")
 
 // Светлая тема — те же значения, что в static/style.css под
 // @media (prefers-color-scheme: light), чтобы PDF не расходился с сайтом

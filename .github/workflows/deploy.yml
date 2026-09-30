@@ -17,7 +17,31 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Отдельный этап: падает быстро (обычно < 20 сек) и ДО того, как начнётся
+  # реальная сборка — если YAML/Python/CSS/Typst/Jinja сломаны, незачем
+  # тратить время на build/deploy.
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python deps
+        run: pip install -r requirements.txt
+
+      - name: Install Typst
+        # Нужен здесь же — check_syntax.py компилирует resume.typ, чтобы
+        # поймать синтаксические ошибки Typst до сборки PDF
+        uses: typst-community/setup-typst@v3
+
+      - name: Syntax check (yaml, py, css, jinja, typst)
+        run: python check_syntax.py
+
   build:
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -35,6 +59,14 @@ jobs:
 
       - name: Build HTML (RU → /, EN → /en/)
         run: python build.py
+
+      - name: Install tidy
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq tidy
+
+      - name: Syntax check (rendered HTML)
+        # Отдельно от lint-джобы: собранный public/*.html существует только
+        # после build.py, поэтому этот чек физически не может идти раньше.
+        run: python check_syntax.py --html
 
       - name: Install Typst
         uses: typst-community/setup-typst@v3

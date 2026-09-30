@@ -37,6 +37,9 @@ jobs:
         # поймать синтаксические ошибки Typst до сборки PDF
         uses: typst-community/setup-typst@v3
 
+      - name: Verify typst
+        run: which typst && typst --version
+
       - name: Syntax check (yaml, py, css, jinja, typst)
         run: python check_syntax.py
 

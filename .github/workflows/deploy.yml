@@ -37,9 +37,6 @@ jobs:
         # поймать синтаксические ошибки Typst до сборки PDF
         uses: typst-community/setup-typst@v3
 
-      - name: Verify typst
-        run: which typst && typst --version
-
       - name: Syntax check (yaml, py, css, jinja, typst)
         run: python check_syntax.py
 
@@ -66,13 +63,16 @@ jobs:
       - name: Install tidy
         run: sudo apt-get update -qq && sudo apt-get install -y -qq tidy
 
+      - name: Verify typst
+        run: which typst && typst --version
+
+      - name: Verify typst
+        run: which typst && typst --version
+
       - name: Syntax check (rendered HTML)
         # Отдельно от lint-джобы: собранный public/*.html существует только
         # после build.py, поэтому этот чек физически не может идти раньше.
         run: python check_syntax.py --html
-
-      - name: Install Typst
-        uses: typst-community/setup-typst@v3
 
       - name: Compile PDFs (RU + EN)
         # Один и тот же resume.typ, разные данные по --input lang=.

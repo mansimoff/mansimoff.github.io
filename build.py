@@ -40,6 +40,9 @@ UI_STRINGS = {
         "projects": "Проекты",
         "education": "Образование",
         "contacts": "Контакты",
+        "github": "ГитХаб",
+        "telegram": "Телеграм",
+        "email": "Почта",
     },
     "en": {
         "download": "Download PDF",
@@ -50,6 +53,9 @@ UI_STRINGS = {
         "projects": "Projects",
         "education": "Education",
         "contacts": "Contacts",
+        "github": "GitHub",
+        "telegram": "Telegram",
+        "email": "Email",
     },
 }
 

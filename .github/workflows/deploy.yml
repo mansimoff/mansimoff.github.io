@@ -63,8 +63,8 @@ jobs:
       - name: Install tidy
         run: sudo apt-get update -qq && sudo apt-get install -y -qq tidy
 
-      - name: Verify typst
-        run: which typst && typst --version
+      - name: Install Typst
+        uses: typst-community/setup-typst@v3
 
       - name: Verify typst
         run: which typst && typst --version

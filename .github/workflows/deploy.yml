@@ -66,9 +66,6 @@ jobs:
       - name: Install Typst
         uses: typst-community/setup-typst@v3
 
-      - name: Verify typst
-        run: which typst && typst --version
-
       - name: Syntax check (rendered HTML)
         # Отдельно от lint-джобы: собранный public/*.html существует только
         # после build.py, поэтому этот чек физически не может идти раньше.

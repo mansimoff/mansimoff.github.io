@@ -51,11 +51,8 @@
 
     <div class="hero__actions no-print">
       <a class="btn btn--ghost" href="/{{ resume_pdf }}" download>{{ t.download }}</a>
-      {% if portfolio_url %}
       <a class="btn btn--ghost" href="{{ portfolio_url }}" target="_blank" rel="noopener">{{ t.portfolio }}</a>
-      {% endif %}
       <a class="btn btn--ghost" href="{{ contacts.github }}" target="_blank" rel="noopener">{{ t.github }}</a>
-      {% endif %}
     </div>
   </header>
 

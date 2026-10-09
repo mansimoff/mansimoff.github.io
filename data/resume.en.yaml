@@ -58,6 +58,7 @@ experience:
       - "Automating routine tasks using Ansible and Terraform, Python and Bash"
       - "Migrating microservices from systemd machines to Kubernetes"
       - "Creating and deploying automated user management systems on Linux servers"
+      - "Preparation and setup of workflows for manufacturers"
       - "Creating and deploying automated security audits for Linux servers and automatic remediation"
       - "Deploying and maintaining HashiCorp Vault for secret management"
       - "Configuring network security: nftables, strongSwan, ipseq, waf mod_security"

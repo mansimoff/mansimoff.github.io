@@ -31,9 +31,9 @@ resume_pdf: "resume_en_mansimovr.pdf"
 # ------------------------------------------------------------------------------
 skills:
   - group: "OS & Virtualization"
-    tags: ["RHEL", "Rocky Linux", "CentOS", "QEMU/KVM", "Docker", "Kubernetes"]
+    tags: ["RHEL / Rocky Linux / Oracle Linux / CentOS", "Debian / Ubuntu / Mint", "QEMU / KVM / libvirt / VirtualBox / VMware", "Docker / Kubernetes", "EVE-NG / Cisco Packet Tracer"]
   - group: "Automation & CI/CD"
-    tags: ["Ansible", "GitLab CI/CD", "github Actions", "Terraform", "Python", "Bash"]
+    tags: ["Ansible", "GitLab CI/CD", "GitHub Actions", "Terraform", "Python", "Bash", "Helm", "Docker Compose"]
   - group: "Security & Networking"
     tags: ["nftables/iptables", "strongSwan", "mod_security", "fail2ban/ssh-guard", "openvpn/wireguard", "PCI DSS", "openscap"]
   - group: "Data & Messaging"
@@ -43,7 +43,7 @@ skills:
   - group: "Observability"
     tags: ["Zabbix", "Prometheus", "Grafana", "Telegraf", "InfluxDB", "oracledb_exporter", "Mimir", "ELK", "OpenTelemetry"]
   - group: "Programming"
-    tags: ["Python", "C", "JavaScript", "SQL", "HTML/CSS", "Cmake", "PyTorch/TensorFlow", "NumPy/pandas"]
+    tags: ["Python / C / C++ / Golang / SQL / Verilog / VBA", "HTML / CSS / JavaScript", "Cmake / Maven / npm", "PyTorch / TensorFlow NumPy / pandas"]
 
 # ------------------------------------------------------------------------------
 # Experience — список мест работы, новейшее — первым.

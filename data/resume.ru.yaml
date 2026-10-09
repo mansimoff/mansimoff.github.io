@@ -1,17 +1,16 @@
 # ==============================================================================
 # resume.yaml — единственный источник данных для сайта.
 # HTML НЕ редактируется руками — он рендерится из этого файла через build.py.
-# Заполни/поправь поля ниже под себя. Поля с пометкой # TODO — обязательны к правке.
 # ==============================================================================
 
 name: "Руслан Мансимов"          
 role: "Линукс-админ/ Девопс / SRE инженер"
 tagline: "Платёжный шлюз · PCI DSS · Автоматизация"
 photo: "assets/photo.jpg"
-# Короткий абзац "о себе" — 2-3 предложения, не больше.
+
 summary: >
   Я Руслан, мне 22 года. Я работаю Unix-sysadmin (с уклоном в Девопс/SRE) в финтех-компании (платёжный шлюз): отвечаю за инфраструктуру, виртуализацию, автоматизацию, настройку сети и мониторинг.
-  Параллельно учусь в магистратуре СПбГУТ. Развиваюсь в сторону бэкаенд-разработки и ML. Также люблю путешествовать, заниматься спортом, читать книги. Имею права категории B. 
+  2ая-3я линия поддержки. Параллельно учусь в магистратуре СПбГУТ. Развиваюсь в сторону бэкенд-разработки и ML. Также люблю путешествовать, заниматься спортом, читать книги. Имею права категории B. 
   Призёр первенства мира 2019 по армрестлингу, являюсь кандидатом в мастера спорта. Трёхкратный чемпион Татарстана, победитель и призёр первенства Санкт-Петербурга и ПФО по армрестлингу.
 
 contacts:
@@ -27,14 +26,13 @@ portfolio_url: "https://mansimoff.github.io/portfolio/"
 resume_pdf: "resume_ru_mansimovr.pdf"
 
 # ------------------------------------------------------------------------------
-# Skills — сгруппированы по смысловым блокам, а не свалены в один список.
 # Порядок блоков = порядок вывода на странице.
 # ------------------------------------------------------------------------------
 skills:
   - group: "OS & Virtualization"
-    tags: ["RHEL", "Rocky Linux", "CentOS", "QEMU/KVM", "Docker", "Kubernetes"]
+    tags: ["RHEL / Rocky Linux / Oracle Linux / CentOS", "Debian / Ubuntu / Mint", "QEMU / KVM / libvirt / VirtualBox / VMware", "Docker / Kubernetes", "EVE-NG / Cisco Packet Tracer"]
   - group: "Automation & CI/CD"
-    tags: ["Ansible", "GitLab CI/CD", "github Actions", "Terraform", "Python", "Bash"]
+    tags: ["Ansible", "GitLab CI/CD", "GitHub Actions", "Terraform", "Python", "Bash", "Helm", "Docker Compose"]
   - group: "Security & Networking"
     tags: ["nftables/iptables", "strongSwan", "mod_security", "fail2ban/ssh-guard", "openvpn/wireguard", "PCI DSS", "openscap"]
   - group: "Data & Messaging"
@@ -44,21 +42,21 @@ skills:
   - group: "Observability"
     tags: ["Zabbix", "Prometheus", "Grafana", "Telegraf", "InfluxDB", "oracledb_exporter", "Mimir", "ELK", "OpenTelemetry"]
   - group: "Programming"
-    tags: ["Python", "C", "JavaScript", "SQL", "HTML/CSS", "Cmake", "PyTorch/TensorFlow", "NumPy/pandas"]
+    tags: ["Python / C / C++ / Golang / SQL / Verilog / VBA", "HTML / CSS / JavaScript", "Cmake / Maven / npm", "PyTorch / TensorFlow NumPy / pandas"]
 
 # ------------------------------------------------------------------------------
 # Experience — список мест работы, новейшее — первым.
-# bullets: 2-4 пункта, начинай с глагола действия, где можно — с цифрой/результатом.
 # ------------------------------------------------------------------------------
 experience:
   - company: "Пэйджин"      
     role: "Линукс-админ / Девопс / SRE инженер"
     period: "07.2025 — настоящее время"  
     bullets:
-      - "Администрирование линукс-серверов на Rocky Linux, CentOS (RHEL, KVM, QEMU, libvirt) "
+      - "Администрирование линукс-серверов на Rocky Linux, CentOS (RHEL, KVM, QEMU, libvirt)"
       - "Автоматизация рутинных задач с использованием Ansible и Terraform, Python и Bash"
       - "Перевод микросервисов с systemd машин в Kubernetes"
       - "Создание и внедрение автоматизированный системны управления пользователями на линукс сервервах"
+      - "Подготовка и настройка рабочих станций для работников"
       - "Создание и внедрение автоматизированного аудита безопасности линукс серверов и автоматической ремидиации"
       - "Внедрение и сопровождение HashiCorp Vault для управления секретами"
       - "Настройка сетевой безопасности: nftables, strongSwan, ipseq, waf mod_security"
@@ -68,7 +66,7 @@ experience:
       - "Траблшутниг и разбор инцидентов"
 
 # ------------------------------------------------------------------------------
-# Projects — ссылки на свои репозитории. 
+# Projects — ссылки на репозитории. 
 #
 projects:
   - name: "User Management Automation Linux Server"     
@@ -97,5 +95,4 @@ education:
     detail: "Распределенные системы управления в сетях связи пятого и последующих поколений"
     period: "2022 - 2026"
 
-# Ссылки в футере
 footer_note: "Сайт собран из YAML → HTML сборщиком на Python. Исходники — в этом репозитории."

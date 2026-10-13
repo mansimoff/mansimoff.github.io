@@ -80,7 +80,7 @@ projects:
   - name: "Web Investment Calculator"
     url: "https://mansimoff.github.io/web_investment_calculator/"
     description: "The investor calculator is a web application written in JavaScript (Functions: final amount, time to achieve the goal, required percentage, deposit size, initial capital, income chart)"
-  - name: "Hypothec_calculator Calculator"
+  - name: "Hypothec Calculator"
     url: "https://mansimoff.github.io/hypothec_calculator/"
     description: "Web application written in JavaScript (Functions: payment by property price, maximum property price by monthly payment, annuity and differentiated schedules, overpayment, required income, payment charts, PDF/Excel export)"
 

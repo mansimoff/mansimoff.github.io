@@ -10,9 +10,9 @@ tagline: "Payment infrastructure · PCI DSS · Automation-first"
 photo: "assets/photo.jpg"
 # Короткий абзац "о себе" — 2-3 предложения, не больше.
 summary: >
-  I’m Ruslan, 22 years old. I work as a Unix sysadmin (with a focus on DevOps/SRE) at a fintech company (payment gateway), where I handle infrastructure, virtualization, automation, network configuration, and monitoring. 
-  At the same time, I am pursuing a master's degree at SPbSUT. I am developing my skills in backend development and ML. I also enjoy traveling, sports, and reading. I hold a Category B driver's license. 
-  I was a medalist at the 2019 World Armwrestling Championship and hold the rank of Candidate for Master of Sports. I am a three-time champion of Tatarstan, as well as a winner and medalist at the St. Petersburg and Volga Federal District armwrestling championships.
+  My name is Ruslan, I am 22 years old, and I work as a Unix systems administrator (with a focus on DevOps/SRE) at a fintech company (a payment gateway). My responsibilities include infrastructure, virtualization, automation, network configuration, and monitoring.
+  I also handle Tier 2–3 technical support. Alongside my work, I am pursuing a master’s degree at SPbSUT (St. Petersburg State University of Telecommunications) and developing my skills in backend development and machine learning. I enjoy traveling, playing sports, and reading; I also hold a Category B driver’s license.
+  I am a medalist from the 2019 World Armwrestling Championship, a Candidate for Master of Sports, a three-time champion of Tatarstan, and a winner and medalist at both the St. Petersburg and Volga Federal District armwrestling championships.
 contacts:
   email: "r.mansimoff@ya.ru"        
   telegram: "https://t.me/ruslan4ik_707"
@@ -31,11 +31,11 @@ resume_pdf: "resume_en_mansimovr.pdf"
 # ------------------------------------------------------------------------------
 skills:
   - group: "OS & Virtualization"
-    tags: ["RHEL / Rocky Linux / Oracle Linux / CentOS", "Debian / Ubuntu / Mint", "QEMU / KVM / libvirt / VirtualBox / VMware", "Docker / Kubernetes", "EVE-NG / Cisco Packet Tracer"]
+    tags: ["RHEL / Rocky Linux / Oracle Linux / CentOS", "Debian / Ubuntu / Mint", "OpenSUSE / FreeBSD / OpenWrt / RouterOS", "QEMU / KVM / libvirt / VirtualBox / VMware", "Docker / Kubernetes / Podman", "EVE-NG / Cisco Packet Tracer"]
   - group: "Automation & CI/CD"
-    tags: ["Ansible", "GitLab CI/CD", "GitHub Actions", "Terraform", "Python", "Bash", "Helm", "Docker Compose"]
+    tags: ["Ansible", "GitLab CI/CD", "GitHub Actions", "Terraform", "Python", "Bash", "Helm", "Docker Compose / Swarm"]
   - group: "Security & Networking"
-    tags: ["nftables/iptables", "strongSwan", "mod_security", "fail2ban/ssh-guard", "openvpn/wireguard", "PCI DSS", "openscap"]
+    tags: ["nftables/iptables", "strongSwan", "mod_security", "fail2ban/ssh-guard", "openvpn/wireguard", "PCI DSS", "GOST 57580", "openscap", "Cisco", "Mikrotik"]
   - group: "Data & Messaging"
     tags: ["Oracle 19c", "PostgreSQL 18", "RabbitMQ", "Kafka", "Ceph", "S3", "Vault"]
   - group: "Application layer"
@@ -44,7 +44,8 @@ skills:
     tags: ["Zabbix", "Prometheus", "Grafana", "Telegraf", "InfluxDB", "oracledb_exporter", "Mimir", "ELK", "OpenTelemetry"]
   - group: "Programming"
     tags: ["Python / C / C++ / Golang / SQL / Verilog / VBA", "HTML / CSS / JavaScript", "Cmake / Maven / npm", "PyTorch / TensorFlow NumPy / pandas"]
-
+  - group: "Additionally"
+    tags: ["Cloud / NAS / bare metal", "AI Agents / Neural Networks / MCP", "IP Telephony / Asterisk / FreeSWITCH / ZoiPer / LinPhone"]
 # ------------------------------------------------------------------------------
 # Experience — список мест работы, новейшее — первым.
 # bullets: 2-4 пункта, начинай с глагола действия, где можно — с цифрой/результатом.
@@ -58,14 +59,18 @@ experience:
       - "Automating routine tasks using Ansible and Terraform, Python and Bash"
       - "Migrating microservices from systemd machines to Kubernetes"
       - "Creating and deploying automated user management systems on Linux servers"
-      - "Preparation and setup of workflows for manufacturers"
+      - "Preparation and setup of workflows for manufacturers, setting VPN"
       - "Creating and deploying automated security audits for Linux servers and automatic remediation"
       - "Deploying and maintaining HashiCorp Vault for secret management"
-      - "Configuring network security: nftables, strongSwan, ipseq, waf mod_security"
+      - "Configuring network security: iptables, nftables, strongSwan, ipseq, waf mod_security"
       - "Deploying auxiliary services and tools"
-      - "Configuring backup, monitoring, and alerting"
+      - "Configuring backup, monitoring, and alerting also Observability (telemetry)"
       - "Configuring virtual machines, web servers, databases, and email servers"
-      - "Troubleshooting and incident analysis"
+      - "Configuration and operation of hypervisors and storage systems"
+      - "Working with Ceph distributed storage and S3, including their configuration"
+      - "Working with Sonatype Nexus Repository, including its support and configuration"
+      - "Troubleshooting and incident analysis, working with certificates"
+      - "Release backend and frontend applications"
 
 # ------------------------------------------------------------------------------
 # Projects — ссылки на свои репозитории. 
@@ -77,12 +82,18 @@ projects:
   - name: "PCI DSS compliance audit and remediation"
     url: "https://github.com/mansimoff/openscap"
     description: "Automated audit of Linux servers for PCI DSS compliance and subsequent remediation (openscap)"
-  - name: "Web Investment Calculator"
+  - name: "Investment Calculator"
     url: "https://mansimoff.github.io/web_investment_calculator/"
     description: "The investor calculator is a web application written in JavaScript (Functions: final amount, time to achieve the goal, required percentage, deposit size, initial capital, income chart)"
   - name: "Hypothec Calculator"
     url: "https://mansimoff.github.io/hypothec_calculator/"
     description: "Web application written in JavaScript (Functions: payment by property price, maximum property price by monthly payment, annuity and differentiated schedules, overpayment, required income, payment charts, PDF/Excel export)"
+  - name: "Hypothotec Calculator"
+    url: "https://mansimoff.github.io/web_hypothec_calculato/"
+    description: "The investor calculator is a web application written in JavaScript (Functions: final amount, time to achieve the goal, required percentage, deposit size, initial capital, income chart)"
+  - name: "Automated creation of virtual machines"
+    url: "https://github.com/mansimoff/kvm_create_vm"
+    description: "Creating virtual machines in KVM running the most common server operating systems with support for cloud images (Ansible)"
 
 # ------------------------------------------------------------------------------
 # Education
